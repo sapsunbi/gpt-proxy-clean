@@ -31,7 +31,7 @@ app.post("/api/gpt", async (req, res) => {
 const data = await response.json();
 
 if (!response.ok) {
-  console.error("❌ GPT 호출 실패:", data);
+  console.error("❌ GPT 호출 실패:", JSON.stringify(data, null, 2)); 
   return res.status(500).json({ error: "GPT 호출 실패", detail: data });
 }
 
