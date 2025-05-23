@@ -1,9 +1,11 @@
-console.log("✅ 실제 실행 중인 server.js입니다");
 import express from "express";
 import cors from "cors";
 import fetch from "node-fetch";
 import dotenv from "dotenv";
 dotenv.config();
+
+console.log("✅ 실제 실행 중인 server.js입니다");
+console.log("🧪 모든 환경변수:", process.env);
 
 const app = express();
 app.use(cors());
