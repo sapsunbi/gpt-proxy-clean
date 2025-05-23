@@ -28,8 +28,15 @@ app.post("/api/gpt", async (req, res) => {
       }),
     });
 
-    const data = await response.json();
-    res.json({ text: data.choices?.[0]?.message?.content?.trim() || "" });
+const data = await response.json();
+
+if (!response.ok) {
+  console.error("❌ GPT 호출 실패:", data);
+  return res.status(500).json({ error: "GPT 호출 실패", detail: data });
+}
+
+const reply = data.choices?.[0]?.message?.content?.trim();
+res.json({ text: reply || "⚠️ GPT 응답이 비어있습니다." });
   } catch (error) {
     console.error("GPT 호출 오류:", error);
     res.status(500).json({ error: "GPT 요청 실패" });
